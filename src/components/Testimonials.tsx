@@ -6,7 +6,7 @@ export const Testimonials = () => {
   const { sectionLabel, headline, items } = config.testimonials!;
 
   return (
-    <section id="patient-stories" className="py-32 px-6 md:px-12 max-w-[1440px] mx-auto">
+    <section id="patient-stories" className="py-20 px-6 md:px-12 max-w-[1440px] mx-auto">
       {/* Header */}
       <div className="text-center mb-16">
         <motion.span

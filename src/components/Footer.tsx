@@ -28,9 +28,12 @@ export const Footer = () => {
         >
           {/* Brand */}
           <div>
-            <span className="text-2xl font-black text-white font-manrope tracking-tight block mb-2">
-              {brand.name}
-            </span>
+            <div className="flex items-center gap-3 mb-3">
+              <img src="/logo.jpg" alt="Logo Centro Médico SC" className="h-11 w-11 rounded-xl object-cover" />
+              <span className="text-2xl font-black text-white tracking-tight" style={{ fontFamily: "'Montserrat', sans-serif" }}>
+                {brand.name}
+              </span>
+            </div>
             <p className="text-white/45 text-sm font-medium max-w-xs leading-relaxed whitespace-pre-line">
               {brand.tagline}
             </p>

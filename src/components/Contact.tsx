@@ -35,7 +35,7 @@ export const Contact = () => {
   };
 
   return (
-    <section id="contact" className="py-32 px-6 md:px-12 max-w-[1440px] mx-auto">
+    <section id="contact" className="py-20 px-6 md:px-12 max-w-[1440px] mx-auto">
       <div className="grid md:grid-cols-2 gap-20">
 
         {/* Left — info */}

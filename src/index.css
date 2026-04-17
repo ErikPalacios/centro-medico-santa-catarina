@@ -1,65 +1,76 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
 @import "tailwindcss";
 
 @theme {
-  --font-sans: "Manrope", ui-sans-serif, system-ui, sans-serif;
-  --font-manrope: "Manrope", sans-serif;
+  --font-sans: "Montserrat", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+  --font-poppins: "Poppins", sans-serif;
 
-  --color-primary: #000666;
-  --color-primary-container: #1a237e;
+  /* ── Identidad Centro Médico Santa Catarina ── */
+  --color-primary: #198C94;
+  --color-primary-dark: #0f6b72;
+  --color-primary-container: #0f6b72;
   --color-on-primary: #ffffff;
-  
-  --color-surface: #f7f9fc;
-  --color-surface-container-low: #f2f4f7;
-  --color-surface-container-high: #e6e8eb;
-  --color-surface-container-highest: #e0e3e6;
+
+  --color-surface: #ffffff;
+  --color-surface-container-low: #f4fbfb;
+  --color-surface-container-high: #e0f4f5;
+  --color-surface-container-highest: #c8ecee;
   --color-surface-container-lowest: #ffffff;
-  
-  --color-on-surface: #191c1e;
-  --color-on-surface-variant: #454652;
-  --color-secondary: #5b5f61;
-  --color-outline-variant: #c6c5d4;
-  
+
+  --color-on-surface: #333333;
+  --color-on-surface-variant: #555555;
+  --color-secondary: #666666;
+  --color-outline-variant: #cce8ea;
+
   --radius-xl: 0.5rem;
   --radius-2xl: 1rem;
   --radius-3xl: 1.5rem;
 
   /* shadcn/ui compatibility aliases */
   --color-background: #ffffff;
-  --color-foreground: #191c1e;
+  --color-foreground: #333333;
   --color-primary-foreground: #ffffff;
-  --color-accent: #e6e8eb;
-  --color-accent-foreground: #191c1e;
-  --color-border: #c6c5d4;
-  --color-input: #c6c5d4;
-  --color-ring: #000666;
+  --color-accent: #e0f4f5;
+  --color-accent-foreground: #333333;
+  --color-border: #cce8ea;
+  --color-input: #cce8ea;
+  --color-ring: #198C94;
   --color-destructive: #dc2626;
   --color-destructive-foreground: #ffffff;
   --color-secondary-foreground: #ffffff;
-  --color-muted: #f2f4f7;
-  --color-muted-foreground: #454652;
+  --color-muted: #f4fbfb;
+  --color-muted-foreground: #555555;
 }
 
 @layer base {
   body {
     @apply bg-surface text-on-surface font-sans;
+    font-family: "Montserrat", "Poppins", ui-sans-serif, system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: -0.01em;
   }
 }
 
+/* ── Sombras editoriales ── */
 .editorial-shadow {
-  box-shadow: 0 32px 64px -12px rgba(25, 28, 30, 0.04);
+  box-shadow: 0 32px 64px -12px rgba(25, 140, 148, 0.08);
 }
 
+/* ── Header con glassmorphism sobre fondo blanco ── */
 .glass-header {
-  background: rgba(247, 249, 252, 0.8);
-  backdrop-filter: blur(12px);
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(25, 140, 148, 0.1);
 }
 
 .transition-all-300 {
   transition: all 300ms cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-/* Gradient rotating button */
+/* ── Botón con gradiente rotante turquesa/aqua ── */
 @property --r {
   syntax: '<angle>';
   inherits: false;
@@ -73,13 +84,67 @@
 .rotatingGradient {
   background: conic-gradient(
     from var(--r) at 50% 50%,
-    #000666 0%,
-    #1e3a8a 22%,
-    #4169e1 42%,
-    #7ba7f5 50%,
-    #4169e1 58%,
-    #1e3a8a 78%,
-    #000666 100%
+    #198C94 0%,
+    #0f6b72 22%,
+    #22b5be 42%,
+    #6dd4da 50%,
+    #22b5be 58%,
+    #0f6b72 78%,
+    #198C94 100%
   );
   animation: rotateGradient 4s linear infinite;
+}
+
+/* ── Divisor de sección ondulado (forma orgánica) ── */
+.section-wave-top {
+  position: relative;
+}
+.section-wave-top::before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -2px;
+  left: 0;
+  right: 0;
+  height: 64px;
+  background: inherit;
+  clip-path: ellipse(55% 100% at 50% 0%);
+  z-index: 1;
+}
+
+/* ── Tarjetas con borde turquesa suave al hover ── */
+.card-hover {
+  transition: transform 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1),
+              border-color 300ms ease;
+}
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 48px -8px rgba(25, 140, 148, 0.14);
+  border-color: rgba(25, 140, 148, 0.25);
+}
+
+/* ── Carrusel infinito ── */
+@keyframes scroll-right {
+  0%   { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.infinite-scroll {
+  animation: scroll-right linear infinite;
+}
+.infinite-scroll:hover {
+  animation-play-state: paused;
+}
+
+/* ── Arco orgánico para el Hero ── */
+.hero-arc-bottom {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 80px;
+  background: #ffffff;
+  clip-path: ellipse(60% 100% at 50% 100%);
+  z-index: 5;
 }

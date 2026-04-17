@@ -1,19 +1,16 @@
 import { drMontgomery } from "./dr-montgomery";
-// import { clinicaSalud } from "./clinica-salud";    ← add new clients here
-// import { medicosSur } from "./medicos-sur";
+import { santaCatarina } from "./santa-catarina";
 
 import type { SiteConfig } from "./types";
 
 const configs: Record<string, SiteConfig> = {
   "dr-montgomery": drMontgomery,
-  // "clinica-salud": clinicaSalud,
-  // "medicos-sur": medicosSur,
+  "santa-catarina": santaCatarina,
 };
 
 // Set VITE_CLIENT in your .env file to switch between clients.
-// e.g. VITE_CLIENT=clinica-salud
-// Falls back to dr-montgomery if not set.
-const clientKey = import.meta.env.VITE_CLIENT ?? "dr-montgomery";
-export const config: SiteConfig = configs[clientKey] ?? drMontgomery;
+// e.g. VITE_CLIENT=santa-catarina
+const clientKey = import.meta.env.VITE_CLIENT ?? "santa-catarina";
+export const config: SiteConfig = configs[clientKey] ?? santaCatarina;
 
 export type { SiteConfig } from "./types";

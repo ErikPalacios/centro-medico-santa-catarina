@@ -38,8 +38,8 @@ export const Hero = () => {
         className="absolute inset-0"
         style={{
           background: features.heroVideo && hero.video
-            ? "linear-gradient(135deg, rgba(0,6,102,0.55) 0%, rgba(0,6,102,0.3) 50%, rgba(0,0,0,0.4) 100%)"
-            : "linear-gradient(135deg, rgba(0,6,102,0.04) 0%, rgba(0,6,102,0.02) 100%)",
+            ? "linear-gradient(135deg, rgba(25,140,148,0.55) 0%, rgba(25,140,148,0.3) 50%, rgba(0,0,0,0.4) 100%)"
+            : "linear-gradient(135deg, rgba(25,140,148,0.04) 0%, rgba(25,140,148,0.02) 100%)",
         }}
       />
 
@@ -76,7 +76,7 @@ export const Hero = () => {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2, duration: 0.6 }}
                   className="inline-flex items-center gap-2.5 rounded-full px-4 py-2 mb-8"
-                  style={{ background: "rgba(0,6,102,0.05)", border: "1px solid rgba(0,6,102,0.1)" }}
+                  style={{ background: "rgba(25,140,148,0.05)", border: "1px solid rgba(25,140,148,0.1)" }}
                 >
                   <span className="relative flex h-2 w-2">
                     <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
@@ -166,8 +166,8 @@ export const Hero = () => {
                   transition={{ delay: 0.9, duration: 0.6 }}
                   className="absolute -bottom-6 left-0 md:-left-8 bg-white rounded-2xl p-5 w-[215px]"
                   style={{
-                    boxShadow: "0 20px 60px -10px rgba(0,6,102,0.18)",
-                    border: "1px solid rgba(0,6,102,0.07)",
+                    boxShadow: "0 20px 60px -10px rgba(25,140,148,0.18)",
+                    border: "1px solid rgba(25,140,148,0.07)",
                   }}
                 >
                   <p className="text-[9px] font-bold uppercase tracking-widest text-secondary mb-1.5">
@@ -197,7 +197,7 @@ export const Hero = () => {
                   animate={{ opacity: 1, scale: 1 }}
                   transition={{ delay: 1.1, duration: 0.5 }}
                   className="absolute top-8 -right-4 md:-right-6 bg-primary text-white rounded-2xl px-4 py-4 text-center"
-                  style={{ boxShadow: "0 16px 48px -8px rgba(0,6,102,0.45)" }}
+                  style={{ boxShadow: "0 16px 48px -8px rgba(25,140,148,0.45)" }}
                 >
                   <p className="text-3xl font-extrabold leading-none mb-1.5">{hero.rating.score}</p>
                   <div className="flex gap-0.5 justify-center mb-1.5">
@@ -215,6 +215,8 @@ export const Hero = () => {
           </motion.div>
         </div>
       </div>
+      {/* Arco orgánico inferior — transición suave al fondo blanco */}
+      <div className="hero-arc-bottom" />
     </section>
   );
 };

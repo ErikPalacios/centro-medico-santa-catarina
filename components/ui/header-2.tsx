@@ -19,25 +19,23 @@ export function Header() {
   return (
     <header
       className={cn(
-        'sticky top-0 z-50 mx-auto w-full max-w-5xl border-b border-transparent md:rounded-md md:border md:transition-all md:ease-out',
+        'sticky top-0 z-50 mx-auto w-full max-w-5xl border-b border-transparent md:rounded-xl md:border md:transition-all md:ease-out',
         {
-          'bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg md:top-4 md:max-w-4xl md:shadow':
+          'bg-background/95 supports-[backdrop-filter]:bg-background/50 border-border backdrop-blur-lg md:top-4 md:shadow':
             scrolled && !open,
           'bg-background/90': open,
         },
       )}
     >
-      <nav
-        className={cn(
-          'flex h-14 w-full items-center justify-between px-4 md:h-12 md:transition-all md:ease-out',
-          { 'md:px-2': scrolled },
-        )}
-      >
-        <a href="#" className="text-xl font-bold tracking-tighter text-primary font-manrope">
-          {brand.name}
+      <nav className="flex h-14 w-full items-center gap-4 px-5 md:h-12 md:px-6 md:transition-all md:ease-out">
+        <a href="#" className="flex items-center gap-2.5 shrink-0">
+          <img src="/logo.jpg" alt="Logo Centro Médico SC" className="h-9 w-9 rounded-lg object-cover" />
+          <span className="text-lg font-bold tracking-tight text-primary whitespace-nowrap hidden sm:block">
+            {brand.name}
+          </span>
         </a>
 
-        <div className="hidden items-center gap-2 md:flex">
+        <div className="hidden items-center gap-2 ml-auto md:flex">
           {nav.links.map((link, i) => (
             <a key={i} className={buttonVariants({ variant: 'ghost' })} href={link.href}>
               {link.label}
@@ -46,18 +44,17 @@ export function Header() {
           <a className={buttonVariants({ variant: 'outline' })} href={`tel:${brand.phone}`}>
             Call Now
           </a>
-          <GradientButton
-            dark
-            height="38px"
+          <button
             onClick={() => { window.location.href = '#contact'; }}
+            className="inline-flex items-center justify-center whitespace-nowrap shrink-0 rounded-xl bg-primary text-white font-bold text-sm px-5 h-[38px] hover:opacity-90 transition-opacity duration-200"
           >
-            <span className="text-sm">{nav.ctaLabel}</span>
-          </GradientButton>
+            {nav.ctaLabel}
+          </button>
         </div>
 
         <button
           onClick={() => setOpen(!open)}
-          className={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'md:hidden')}
+          className={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'ml-auto md:hidden')}
           aria-label="Toggle menu"
         >
           <MenuToggleIcon open={open} className="size-5" duration={300} />

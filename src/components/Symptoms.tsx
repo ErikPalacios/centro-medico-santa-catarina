@@ -16,7 +16,7 @@ export const Symptoms = () => {
   const symptoms = config.symptoms!;
 
   return (
-    <section id="expertise" className="py-32 px-6 md:px-12 bg-surface-container-low">
+    <section id="expertise" className="py-20 px-6 md:px-12 bg-surface-container-low">
       <div className="max-w-[1440px] mx-auto">
         {/* Section header */}
         <div className="grid md:grid-cols-2 gap-8 items-end mb-20">
@@ -64,23 +64,23 @@ export const Symptoms = () => {
                 transition={{ delay: i * 0.07, duration: 0.55, ease: "easeOut" }}
                 className="group relative bg-white rounded-2xl p-8 overflow-hidden transition-all duration-300 hover:-translate-y-1"
                 style={{
-                  border: "1px solid rgba(0,6,102,0.07)",
-                  boxShadow: "0 2px 12px -2px rgba(0,6,102,0.05)",
+                  border: "1.5px solid rgba(25,140,148,0.22)",
+                  boxShadow: "0 2px 12px -2px rgba(25,140,148,0.08)",
                 }}
                 onMouseEnter={(e) => {
                   (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 20px 48px -8px rgba(0,6,102,0.12)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,6,102,0.2)";
+                    "0 20px 48px -8px rgba(25,140,148,0.18)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(25,140,148,0.45)";
                 }}
                 onMouseLeave={(e) => {
                   (e.currentTarget as HTMLElement).style.boxShadow =
-                    "0 2px 12px -2px rgba(0,6,102,0.05)";
-                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(0,6,102,0.07)";
+                    "0 2px 12px -2px rgba(25,140,148,0.08)";
+                  (e.currentTarget as HTMLElement).style.borderColor = "rgba(25,140,148,0.22)";
                 }}
               >
                 <span
-                  className="absolute top-0 right-4 text-[5.5rem] font-extrabold leading-none select-none transition-colors duration-400 group-hover:text-primary/10"
-                  style={{ color: "rgba(0,6,102,0.05)" }}
+                  className="absolute top-0 right-4 text-[5.5rem] font-extrabold leading-none select-none transition-colors duration-400"
+                  style={{ color: "rgba(25,140,148,0.32)" }}
                 >
                   {item.number}
                 </span>

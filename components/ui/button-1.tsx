@@ -45,8 +45,8 @@ const GradientButton = ({
       ].join(' ')}
       style={{
         '--r': '0deg',
-        '--color-text': dark ? '#ffffff' : '#000666',
-        '--color-background': dark ? '#000666' : '#ffffff',
+        '--color-text': dark ? '#ffffff' : '#198C94',
+        '--color-background': dark ? '#198C94' : '#ffffff',
         minWidth: width,
         height,
         ...style,

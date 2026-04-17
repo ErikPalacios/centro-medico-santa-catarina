@@ -88,7 +88,7 @@ export const CTA = () => {
             transition={{ delay: 0.45, duration: 0.55, ease: "easeOut" }}
             className="flex flex-col gap-4 flex-shrink-0 items-center"
           >
-            <GradientButton dark height="60px" onClick={() => { window.location.href = "#contact"; }}>
+            <GradientButton height="60px" onClick={() => { window.location.href = "#contact"; }}>
               <span className="text-[1.05rem] flex items-center gap-2.5">
                 {cta.ctaLabel}
                 <ArrowRight className="w-4 h-4" />
