@@ -1,20 +1,15 @@
 import React from 'react';
-import { Button, buttonVariants } from '@/components/ui/button';
+import { buttonVariants } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { MenuToggleIcon } from '@/components/ui/menu-toggle-icon';
 import { useScroll } from '@/components/ui/use-scroll';
 import GradientButton from '@/components/ui/button-1';
-
-const links = [
-  { label: 'Expertise', href: '#expertise' },
-  { label: 'About', href: '#about' },
-  { label: 'Testimonials', href: '#patient-stories' },
-  { label: 'Contact', href: '#contact' },
-];
+import { config } from '@/src/config';
 
 export function Header() {
   const [open, setOpen] = React.useState(false);
   const scrolled = useScroll(10);
+  const { nav, brand } = config;
 
   React.useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : '';
@@ -38,20 +33,17 @@ export function Header() {
           { 'md:px-2': scrolled },
         )}
       >
-        <a
-          href="#"
-          className="text-xl font-bold tracking-tighter text-primary font-manrope"
-        >
-          Dr. Montgomery
+        <a href="#" className="text-xl font-bold tracking-tighter text-primary font-manrope">
+          {brand.name}
         </a>
 
         <div className="hidden items-center gap-2 md:flex">
-          {links.map((link, i) => (
+          {nav.links.map((link, i) => (
             <a key={i} className={buttonVariants({ variant: 'ghost' })} href={link.href}>
               {link.label}
             </a>
           ))}
-          <a className={buttonVariants({ variant: 'outline' })} href="tel:+18005551234">
+          <a className={buttonVariants({ variant: 'outline' })} href={`tel:${brand.phone}`}>
             Call Now
           </a>
           <GradientButton
@@ -59,19 +51,17 @@ export function Header() {
             height="38px"
             onClick={() => { window.location.href = '#contact'; }}
           >
-            <span className="text-sm">Book Appointment</span>
+            <span className="text-sm">{nav.ctaLabel}</span>
           </GradientButton>
         </div>
 
-        <Button
-          size="icon"
-          variant="outline"
+        <button
           onClick={() => setOpen(!open)}
-          className="md:hidden"
+          className={cn(buttonVariants({ variant: 'outline', size: 'icon' }), 'md:hidden')}
           aria-label="Toggle menu"
         >
           <MenuToggleIcon open={open} className="size-5" duration={300} />
-        </Button>
+        </button>
       </nav>
 
       {/* Mobile menu */}
@@ -88,7 +78,7 @@ export function Header() {
           )}
         >
           <div className="grid gap-y-2">
-            {links.map((link) => (
+            {nav.links.map((link) => (
               <a
                 key={link.label}
                 className={buttonVariants({ variant: 'ghost', className: 'justify-start' })}
@@ -102,7 +92,7 @@ export function Header() {
           <div className="flex flex-col gap-2">
             <a
               className={buttonVariants({ variant: 'outline', className: 'w-full' })}
-              href="tel:+18005551234"
+              href={`tel:${brand.phone}`}
             >
               Call Now
             </a>
@@ -112,7 +102,7 @@ export function Header() {
               className="w-full"
               onClick={() => { setOpen(false); window.location.href = '#contact'; }}
             >
-              <span className="text-sm">Book Appointment</span>
+              <span className="text-sm">{nav.ctaLabel}</span>
             </GradientButton>
           </div>
         </div>

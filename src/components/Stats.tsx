@@ -1,13 +1,9 @@
 import { motion } from "motion/react";
-
-const stats = [
-  { label: "Successful Diagnoses", value: "1,200+", sub: "Since 2009" },
-  { label: "On-Time Consultations", value: "99%", sub: "Consistently" },
-  { label: "Recovery Success Rate", value: "98%", sub: "Documented outcomes" },
-  { label: "Lifestyle Plans", value: "500+", sub: "Personalized programs" },
-];
+import { config } from "@/src/config";
 
 export const Stats = () => {
+  const { items } = config.stats!;
+
   return (
     <section className="bg-primary py-20 px-6 md:px-12 relative overflow-hidden">
       <div
@@ -19,7 +15,7 @@ export const Stats = () => {
       />
       <div className="max-w-[1440px] mx-auto relative">
         <div className="grid grid-cols-2 md:grid-cols-4">
-          {stats.map((stat, i) => (
+          {items.map((stat, i) => (
             <motion.div
               key={stat.label}
               initial={{ opacity: 0, y: 30 }}
@@ -28,7 +24,7 @@ export const Stats = () => {
               transition={{ delay: i * 0.1, duration: 0.55, ease: "easeOut" }}
               className={[
                 "flex flex-col items-center text-center py-10 px-6",
-                i < stats.length - 1 ? "md:border-r border-white/10" : "",
+                i < items.length - 1 ? "md:border-r border-white/10" : "",
                 i % 2 === 0 && i < 2 ? "border-b md:border-b-0 border-white/10" : "",
               ].join(" ")}
             >

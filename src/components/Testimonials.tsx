@@ -1,34 +1,10 @@
 import { motion } from "motion/react";
 import { Star, Quote } from "lucide-react";
-
-const testimonials = [
-  {
-    quote:
-      "Dr. Montgomery didn't just treat my symptoms — he investigated the root cause of my fatigue. For the first time in years, I feel like I've reclaimed my energy.",
-    name: "Sarah Chen",
-    title: "Tech Executive",
-    initials: "SC",
-    highlight: false,
-  },
-  {
-    quote:
-      "The level of thoroughness in Dr. Harper's diagnostic process is unparalleled. He takes the time to explain the 'why' behind every recommendation.",
-    name: "Marcus Johnson",
-    title: "Professional Athlete",
-    initials: "MJ",
-    highlight: true,
-  },
-  {
-    quote:
-      "I've seen many doctors over the years, but Dr. Montgomery's preventative approach has genuinely changed my quality of life. His team is exceptional.",
-    name: "Alexandra Lee",
-    title: "Business Owner",
-    initials: "AL",
-    highlight: false,
-  },
-];
+import { config } from "@/src/config";
 
 export const Testimonials = () => {
+  const { sectionLabel, headline, items } = config.testimonials!;
+
   return (
     <section id="patient-stories" className="py-32 px-6 md:px-12 max-w-[1440px] mx-auto">
       {/* Header */}
@@ -40,7 +16,7 @@ export const Testimonials = () => {
           transition={{ duration: 0.45 }}
           className="text-xs uppercase tracking-[0.2em] text-primary font-bold mb-4 block"
         >
-          Patient Experience
+          {sectionLabel}
         </motion.span>
         <motion.h2
           initial={{ opacity: 0, y: 24 }}
@@ -49,13 +25,13 @@ export const Testimonials = () => {
           transition={{ delay: 0.1, duration: 0.6, ease: "easeOut" }}
           className="text-4xl md:text-5xl font-extrabold text-primary tracking-tight"
         >
-          What Patients Say
+          {headline}
         </motion.h2>
       </div>
 
       {/* Cards */}
       <div className="grid md:grid-cols-3 gap-6 items-start">
-        {testimonials.map((t, i) => (
+        {items.map((t, i) => (
           <motion.div
             key={t.name}
             initial={{ opacity: 0, y: 40 }}
@@ -79,7 +55,6 @@ export const Testimonials = () => {
               ].join(" ")}
             />
 
-            {/* Stars */}
             <div className="flex gap-1">
               {[...Array(5)].map((_, idx) => (
                 <Star

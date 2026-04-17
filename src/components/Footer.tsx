@@ -1,16 +1,12 @@
 import { motion } from "motion/react";
 import GradientButton from "@/components/ui/button-1";
-
-const navLinks = [
-  { label: "Expertise", href: "#expertise" },
-  { label: "About", href: "#about" },
-  { label: "Testimonials", href: "#patient-stories" },
-  { label: "Contact", href: "#contact" },
-];
+import { config } from "@/src/config";
 
 const legalLinks = ["Privacy Policy", "Terms of Service", "Medical Disclaimer", "Accessibility"];
 
 export const Footer = () => {
+  const { brand, nav } = config;
+
   return (
     <footer className="bg-primary relative overflow-hidden">
       <div
@@ -33,16 +29,16 @@ export const Footer = () => {
           {/* Brand */}
           <div>
             <span className="text-2xl font-black text-white font-manrope tracking-tight block mb-2">
-              Dr. Montgomery
+              {brand.name}
             </span>
-            <p className="text-white/45 text-sm font-medium max-w-xs leading-relaxed">
-              Precision diagnostics. Compassionate care.<br />Internal medicine for a longer, better life.
+            <p className="text-white/45 text-sm font-medium max-w-xs leading-relaxed whitespace-pre-line">
+              {brand.tagline}
             </p>
           </div>
 
           {/* Nav links */}
           <nav className="flex flex-wrap gap-x-8 gap-y-3">
-            {navLinks.map((link) => (
+            {nav.links.map((link) => (
               <a
                 key={link.label}
                 href={link.href}
@@ -57,9 +53,9 @@ export const Footer = () => {
           <GradientButton
             dark
             height="48px"
-            onClick={() => { window.location.href = '#contact'; }}
+            onClick={() => { window.location.href = "#contact"; }}
           >
-            <span className="text-sm">Book Appointment</span>
+            <span className="text-sm">{nav.ctaLabel}</span>
           </GradientButton>
         </motion.div>
 
@@ -71,9 +67,7 @@ export const Footer = () => {
           transition={{ delay: 0.2, duration: 0.5 }}
           className="flex flex-col md:flex-row justify-between items-center gap-6 py-8"
         >
-          <p className="text-white/35 text-xs font-medium">
-            © 2025 Dr. Montgomery Medical Practice. All rights reserved.
-          </p>
+          <p className="text-white/35 text-xs font-medium">{brand.copyright}</p>
           <div className="flex flex-wrap justify-center gap-6">
             {legalLinks.map((link) => (
               <a
