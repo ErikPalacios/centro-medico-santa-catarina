@@ -6,7 +6,24 @@ import { FloatingPaths } from "@/components/ui/background-paths";
 export const Hero = () => {
   return (
     <section className="relative overflow-hidden min-h-[95vh] flex items-start">
-      {/* Animated background — full viewport width, no max-w constraint */}
+      {/* Layer 1 — Video background */}
+      <video
+        className="absolute inset-0 w-full h-full object-cover"
+        autoPlay
+        muted
+        loop
+        playsInline
+      >
+        <source src="/hero-bg.mp4" type="video/mp4" />
+      </video>
+
+      {/* Layer 2 — Dark overlay for readability */}
+      <div
+        className="absolute inset-0"
+        style={{ background: "linear-gradient(135deg, rgba(0,6,102,0.55) 0%, rgba(0,6,102,0.3) 50%, rgba(0,0,0,0.4) 100%)" }}
+      />
+
+      {/* Layer 3 — Animated paths on top of video */}
       <div className="absolute inset-0">
         <FloatingPaths position={1} />
         <FloatingPaths position={-1} />
@@ -26,9 +43,9 @@ export const Hero = () => {
           <div
             className="backdrop-blur-md rounded-3xl p-8 md:p-10"
             style={{
-              background: "rgba(255,255,255,0.72)",
-              border: "1px solid rgba(255,255,255,0.95)",
-              boxShadow: "0 8px 40px rgba(0,6,102,0.07), inset 0 1px 0 rgba(255,255,255,0.9)",
+              background: "rgba(255,255,255,0.82)",
+              border: "1px solid rgba(255,255,255,0.9)",
+              boxShadow: "0 16px 48px rgba(0,0,0,0.25), inset 0 1px 0 rgba(255,255,255,0.95)",
             }}
           >
           {/* Live badge */}

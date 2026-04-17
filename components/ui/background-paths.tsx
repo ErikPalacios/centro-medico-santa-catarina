@@ -29,7 +29,7 @@ export function FloatingPaths({ position }: { position: number }) {
           <motion.path
             key={path.id}
             d={path.d}
-            stroke="rgba(0,6,102,1)"
+            stroke="rgba(255,255,255,1)"
             strokeWidth={path.width}
             strokeOpacity={path.opacity}
             initial={{ pathLength: 0.3, opacity: 0.6 }}
