@@ -120,13 +120,13 @@ export interface SiteConfig {
         name: string;
         title: string;
         iconName: LucideIconName;
+        description: string;
+        specialties: { iconName: LucideIconName; label: string }[];
       }>;
     };
     specialtiesModal?: {
       intro?: string;
       title: string;
-      subtitle?: string;
-      items: { iconName: LucideIconName; label: string }[];
       footer?: string;
     };
   };

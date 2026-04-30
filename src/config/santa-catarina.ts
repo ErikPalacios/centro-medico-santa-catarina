@@ -2,7 +2,7 @@ import type { SiteConfig } from "./types";
 
 export const santaCatarina: SiteConfig = {
   brand: {
-    name: "Centro Médico SC",
+    name: "Centro Médico y Especialidades Santa Catarina",
     tagline: "Especialistas de alto nivel al alcance de todos.\nCuidamos tu salud digestiva.",
     phone: "(81) 8000-0000",
     email: "citas@cmsc.mx",
@@ -72,26 +72,39 @@ export const santaCatarina: SiteConfig = {
           name: "Dr. Miguel Ángel\nCázares Álvarez",
           title: "Cirujano General",
           iconName: "Stethoscope",
+          description:
+            "El Dr. Miguel Ángel Cázares Álvarez realiza cirugía gastrointestinal y de mínima invasión, incluyendo hernioplastias, colecistectomías y laparoscopia avanzada. Atiende a pacientes adultos y niños con protocolos de seguridad y un enfoque humano centrado en la recuperación rápida.",
+          specialties: [
+            { iconName: "Activity",   label: "Cirugía gastrointestinal" },
+            { iconName: "Shield",     label: "Cirugía de hernia" },
+            { iconName: "HeartPulse", label: "Cirugía de vesícula y vía biliar" },
+            { iconName: "Microscope", label: "Laparoscopia avanzada" },
+          ],
         },
         {
-          image: "/dr-cazares.png",
-          imageAlt: "Dra. Claudia Cardosa",
-          name: "Dra. Claudia\nCardosa",
-          title: "Cirujano General",
+          image: "/dra-cardosa.jpg",
+          imageAlt: "Dra. Claudia Mayela Cardosa González",
+          name: "Dra. Claudia Mayela\nCardosa González",
+          title: "Cirujana General y Endoscopista",
           iconName: "Stethoscope",
+          description:
+            "La Dra. Claudia Mayela Cardosa Gonzalez realiza cirugía general y de mínima invasión, incluyendo hernioplastias y colecistectomías. Trabaja con protocolos de seguridad, control del dolor y educación preoperatoria para mejorar la experiencia y los resultados de sus pacientes.",
+          specialties: [
+            { iconName: "Stethoscope", label: "Visitas sucesivas Endoscopia" },
+            { iconName: "HeartPulse",  label: "Colangiopancreatografía retrógrada endoscópica terapéutica" },
+            { iconName: "Microscope",  label: "Colonoscopia total" },
+            { iconName: "Syringe",     label: "Esclerosis endoscópica" },
+            { iconName: "Shield",      label: "Extracción de cuerpos extraños" },
+            { iconName: "Activity",    label: "Gastrostomía" },
+            { iconName: "Microscope",  label: "Panendoscopia oral diagnóstica" },
+            { iconName: "Pill",        label: "Polipectomia gástrica endoscópica" },
+          ],
         },
       ],
     },
     specialtiesModal: {
       intro: "Áreas de Especialización",
       title: "Enfocado en",
-      subtitle: "Dr. Miguel Ángel Cázares Álvarez — Cirujano General",
-      items: [
-        { iconName: "Activity",   label: "Cirugía gastrointestinal" },
-        { iconName: "Shield",     label: "Cirugía de hernia" },
-        { iconName: "HeartPulse", label: "Cirugía de vesícula y vía biliar" },
-        { iconName: "Microscope", label: "Laparoscopia avanzada" },
-      ],
       footer: "Atendemos pacientes adultos y niños",
     },
   },

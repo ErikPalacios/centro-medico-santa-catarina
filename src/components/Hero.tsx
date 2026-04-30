@@ -27,16 +27,18 @@ export const Hero = () => {
 
   useEffect(() => {
     if (!specialists || specialists.length < 2) return;
+    if (showSpecialties) return; // pause cycling while specialties modal is open
     const id = setInterval(
       () => setSpecialistIdx((i) => (i + 1) % specialists.length),
       cycleMs
     );
     return () => clearInterval(id);
-  }, [specialists, cycleMs]);
+  }, [specialists, cycleMs, showSpecialties]);
 
   const currentSpecialist = specialists?.[specialistIdx];
   const heroImage = currentSpecialist?.image ?? hero.image;
   const heroImageAlt = currentSpecialist?.imageAlt ?? hero.imageAlt;
+  const heroDescription = currentSpecialist?.description ?? hero.subheadline;
   const activeDoctorCard = currentSpecialist
     ? {
         label: hero.specialists!.cardLabel,
@@ -131,9 +133,20 @@ export const Hero = () => {
                 )}
               </h1>
 
-              <p className="text-xl text-secondary mb-10 max-w-[440px] leading-relaxed font-light">
-                {hero.subheadline}
-              </p>
+              <div className="relative mb-10 max-w-[440px] min-h-[8.5rem]">
+                <AnimatePresence>
+                  <motion.p
+                    key={`hero-desc-${specialistIdx}`}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -6 }}
+                    transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                    className="absolute inset-0 text-xl text-secondary leading-relaxed font-light"
+                  >
+                    {heroDescription}
+                  </motion.p>
+                </AnimatePresence>
+              </div>
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12 items-center">
                 <GradientButton dark height="56px" onClick={() => { window.location.href = "#contact"; }}>
@@ -188,19 +201,12 @@ export const Hero = () => {
             transition={{ duration: 1, delay: 0.15 }}
             className="md:col-span-6 relative"
           >
-            <div className="relative md:translate-x-8">
-              {/* Layout-reservation image (invisible) — keeps the box height stable while animated layer cross-fades */}
-              <img
-                className="w-full h-auto max-h-[640px] object-cover rounded-3xl invisible"
-                src={heroImage}
-                alt=""
-                aria-hidden="true"
-                referrerPolicy="no-referrer"
-              />
+            <div className="relative md:translate-x-8 w-full aspect-square max-w-[640px]">
               <AnimatePresence>
                 <motion.img
                   key={`hero-img-${specialistIdx}`}
                   className="absolute inset-0 w-full h-full object-cover rounded-3xl editorial-shadow"
+                  style={{ objectPosition: "center top" }}
                   src={heroImage}
                   alt={heroImageAlt}
                   initial={{ opacity: 0 }}
@@ -307,7 +313,11 @@ export const Hero = () => {
       {/* Arco orgánico inferior — transición suave al fondo blanco */}
       <div className="hero-arc-bottom" />
 
-      <SpecialtiesModal open={showSpecialties} onClose={() => setShowSpecialties(false)} />
+      <SpecialtiesModal
+        open={showSpecialties}
+        onClose={() => setShowSpecialties(false)}
+        activeSpecialist={currentSpecialist}
+      />
     </section>
   );
 };

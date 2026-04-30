@@ -3,13 +3,21 @@ import { AnimatePresence, motion } from "motion/react";
 import { X } from "lucide-react";
 import { config } from "@/src/config";
 import { iconMap } from "@/src/config/icons";
+import type { LucideIconName } from "@/src/config/types";
+
+type Specialist = {
+  name: string;
+  title: string;
+  specialties: { iconName: LucideIconName; label: string }[];
+};
 
 interface Props {
   open: boolean;
   onClose: () => void;
+  activeSpecialist?: Specialist;
 }
 
-export const SpecialtiesModal = ({ open, onClose }: Props) => {
+export const SpecialtiesModal = ({ open, onClose, activeSpecialist }: Props) => {
   const data = config.hero.specialtiesModal;
 
   useEffect(() => {
@@ -27,6 +35,11 @@ export const SpecialtiesModal = ({ open, onClose }: Props) => {
   }, [open, onClose]);
 
   if (!data) return null;
+
+  const items = activeSpecialist?.specialties ?? [];
+  const subtitle = activeSpecialist
+    ? `${activeSpecialist.name.replace(/\n/g, " ")} — ${activeSpecialist.title}`
+    : undefined;
 
   return (
     <AnimatePresence>
@@ -51,7 +64,7 @@ export const SpecialtiesModal = ({ open, onClose }: Props) => {
             role="dialog"
             aria-modal="true"
             aria-label={data.title}
-            className="relative bg-white rounded-3xl w-full max-w-lg overflow-hidden"
+            className="relative bg-white rounded-3xl w-full max-w-lg max-h-[90vh] overflow-hidden flex flex-col"
             initial={{ opacity: 0, scale: 0.92, y: 24 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.95, y: 16 }}
@@ -62,12 +75,12 @@ export const SpecialtiesModal = ({ open, onClose }: Props) => {
             }}
           >
             <div
-              className="h-1.5"
+              className="h-1.5 flex-shrink-0"
               style={{ background: "linear-gradient(90deg, #198C94 0%, #0f6b72 100%)" }}
               aria-hidden="true"
             />
 
-            <div className="flex items-start justify-between p-8 pb-5">
+            <div className="flex items-start justify-between p-8 pb-5 flex-shrink-0">
               <div className="pr-4">
                 {data.intro && (
                   <p className="text-[10px] uppercase tracking-[0.22em] text-primary/70 font-bold mb-2.5">
@@ -77,9 +90,9 @@ export const SpecialtiesModal = ({ open, onClose }: Props) => {
                 <h3 className="text-2xl md:text-3xl font-extrabold text-primary tracking-tight leading-tight">
                   {data.title}
                 </h3>
-                {data.subtitle && (
+                {subtitle && (
                   <p className="text-sm text-secondary font-medium mt-2 leading-snug">
-                    {data.subtitle}
+                    {subtitle}
                   </p>
                 )}
               </div>
@@ -92,17 +105,17 @@ export const SpecialtiesModal = ({ open, onClose }: Props) => {
               </button>
             </div>
 
-            <div className="px-8 pb-6 space-y-3">
-              {data.items.map((item, i) => {
+            <div className="px-8 pb-6 space-y-3 overflow-y-auto">
+              {items.map((item, i) => {
                 const Icon = iconMap[item.iconName];
                 return (
                   <motion.div
-                    key={item.label}
+                    key={`${item.label}-${i}`}
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{
-                      delay: 0.18 + i * 0.08,
-                      duration: 0.45,
+                      delay: 0.15 + i * 0.05,
+                      duration: 0.4,
                       ease: "easeOut",
                     }}
                     className="flex items-center gap-4 p-4 rounded-2xl"
@@ -129,8 +142,8 @@ export const SpecialtiesModal = ({ open, onClose }: Props) => {
               <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: 0.55, duration: 0.4 }}
-                className="px-8 py-5 text-center"
+                transition={{ delay: 0.5, duration: 0.4 }}
+                className="px-8 py-5 text-center flex-shrink-0"
                 style={{
                   background:
                     "linear-gradient(180deg, rgba(25,140,148,0.04) 0%, rgba(25,140,148,0.10) 100%)",
