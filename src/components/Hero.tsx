@@ -118,13 +118,19 @@ export const Hero = () => {
                   </span>
                 </GradientButton>
                 {hero.secondaryCta && (
-                  <button
-                    type="button"
-                    onClick={() => setShowSpecialties(true)}
-                    className="inline-flex items-center justify-center text-primary border border-primary/25 px-8 py-4 rounded-xl font-bold text-[1.05rem] hover:bg-primary/5 hover:border-primary/40 transition-all duration-300"
+                  <motion.div
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.95 }}
+                    transition={{ type: "spring", stiffness: 420, damping: 22 }}
+                    className="inline-block"
                   >
-                    {hero.secondaryCta}
-                  </button>
+                    <GradientButton
+                      height="56px"
+                      onClick={() => setShowSpecialties(true)}
+                    >
+                      <span className="text-[1.05rem]">{hero.secondaryCta}</span>
+                    </GradientButton>
+                  </motion.div>
                 )}
               </div>
 
