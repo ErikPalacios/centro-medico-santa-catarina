@@ -30,7 +30,7 @@ export function Header() {
       <nav className="flex h-14 w-full items-center gap-4 px-5 md:h-12 md:px-6 md:transition-all md:ease-out">
         <a href="#" className="flex items-center gap-2.5 shrink-0">
           <img src="/logo.jpg" alt="Logo Centro Médico SC" className="h-9 w-9 rounded-lg object-cover" />
-          <span className="text-sm font-bold tracking-tight text-primary whitespace-nowrap hidden lg:block">
+          <span className="block text-[11px] leading-[1.15] max-w-[170px] lg:text-sm lg:leading-normal lg:max-w-none lg:whitespace-nowrap font-bold tracking-tight text-primary">
             {brand.name}
           </span>
         </a>
