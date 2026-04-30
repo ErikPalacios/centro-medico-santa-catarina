@@ -111,6 +111,17 @@ export interface SiteConfig {
       title: string;
       iconName: LucideIconName;
     };
+    specialists?: {
+      cycleMs?: number;
+      cardLabel: string;
+      items: Array<{
+        image: string;
+        imageAlt: string;
+        name: string;
+        title: string;
+        iconName: LucideIconName;
+      }>;
+    };
     specialtiesModal?: {
       intro?: string;
       title: string;

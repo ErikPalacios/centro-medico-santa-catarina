@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { motion } from "motion/react";
+import { useEffect, useState } from "react";
+import { AnimatePresence, motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import GradientButton from "@/components/ui/button-1";
 import { FloatingPaths } from "@/components/ui/background-paths";
@@ -20,6 +20,31 @@ function renderLines(text: string) {
 export const Hero = () => {
   const { hero, features } = config;
   const [showSpecialties, setShowSpecialties] = useState(false);
+
+  const specialists = hero.specialists?.items;
+  const cycleMs = hero.specialists?.cycleMs ?? 3000;
+  const [specialistIdx, setSpecialistIdx] = useState(0);
+
+  useEffect(() => {
+    if (!specialists || specialists.length < 2) return;
+    const id = setInterval(
+      () => setSpecialistIdx((i) => (i + 1) % specialists.length),
+      cycleMs
+    );
+    return () => clearInterval(id);
+  }, [specialists, cycleMs]);
+
+  const currentSpecialist = specialists?.[specialistIdx];
+  const heroImage = currentSpecialist?.image ?? hero.image;
+  const heroImageAlt = currentSpecialist?.imageAlt ?? hero.imageAlt;
+  const activeDoctorCard = currentSpecialist
+    ? {
+        label: hero.specialists!.cardLabel,
+        name: currentSpecialist.name,
+        title: currentSpecialist.title,
+        iconName: currentSpecialist.iconName,
+      }
+    : hero.doctorCard;
 
   return (
     <section className="relative overflow-hidden min-h-[95vh] flex items-start">
@@ -164,12 +189,27 @@ export const Hero = () => {
             className="md:col-span-6 relative"
           >
             <div className="relative md:translate-x-8">
+              {/* Layout-reservation image (invisible) — keeps the box height stable while animated layer cross-fades */}
               <img
-                className="w-full h-auto max-h-[640px] object-cover rounded-3xl editorial-shadow"
-                src={hero.image}
-                alt={hero.imageAlt}
+                className="w-full h-auto max-h-[640px] object-cover rounded-3xl invisible"
+                src={heroImage}
+                alt=""
+                aria-hidden="true"
                 referrerPolicy="no-referrer"
               />
+              <AnimatePresence>
+                <motion.img
+                  key={`hero-img-${specialistIdx}`}
+                  className="absolute inset-0 w-full h-full object-cover rounded-3xl editorial-shadow"
+                  src={heroImage}
+                  alt={heroImageAlt}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.7, ease: "easeInOut" }}
+                  referrerPolicy="no-referrer"
+                />
+              </AnimatePresence>
 
               {/* Floating availability card */}
               {hero.availability && (
@@ -203,35 +243,41 @@ export const Hero = () => {
                 </motion.div>
               )}
 
-              {/* Floating doctor card */}
-              {hero.doctorCard && (() => {
-                const DocIcon = iconMap[hero.doctorCard.iconName];
-                return (
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 1.0, duration: 0.6 }}
-                    className="absolute -bottom-6 right-0 md:-right-8 bg-white rounded-2xl p-5 w-[230px]"
-                    style={{
-                      boxShadow: "0 20px 60px -10px rgba(25,140,148,0.18)",
-                      border: "1px solid rgba(25,140,148,0.07)",
-                    }}
-                  >
-                    <p className="text-[9px] font-bold uppercase tracking-widest text-secondary mb-1.5">
-                      {hero.doctorCard.label}
-                    </p>
-                    <p className="text-primary font-extrabold text-base leading-tight mb-3 whitespace-pre-line">
-                      {hero.doctorCard.name}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
-                        <DocIcon className="w-3 h-3 text-primary" />
-                      </div>
-                      <p className="text-xs text-secondary font-medium">{hero.doctorCard.title}</p>
-                    </div>
-                  </motion.div>
-                );
-              })()}
+              {/* Floating doctor card — cycles between specialists when configured */}
+              {activeDoctorCard && (
+                <AnimatePresence>
+                  {(() => {
+                    const DocIcon = iconMap[activeDoctorCard.iconName];
+                    return (
+                      <motion.div
+                        key={`doc-card-${specialistIdx}`}
+                        initial={{ opacity: 0, y: 16 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                        className="absolute -bottom-6 right-0 md:-right-8 bg-white rounded-2xl p-5 w-[230px]"
+                        style={{
+                          boxShadow: "0 20px 60px -10px rgba(25,140,148,0.18)",
+                          border: "1px solid rgba(25,140,148,0.07)",
+                        }}
+                      >
+                        <p className="text-[9px] font-bold uppercase tracking-widest text-secondary mb-1.5">
+                          {activeDoctorCard.label}
+                        </p>
+                        <p className="text-primary font-extrabold text-base leading-tight mb-3 whitespace-pre-line">
+                          {activeDoctorCard.name}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <DocIcon className="w-3 h-3 text-primary" />
+                          </div>
+                          <p className="text-xs text-secondary font-medium">{activeDoctorCard.title}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                </AnimatePresence>
+              )}
 
               {/* Rating badge */}
               {hero.rating && (

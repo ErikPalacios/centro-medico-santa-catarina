@@ -62,6 +62,26 @@ export const santaCatarina: SiteConfig = {
       title: "Cirujano General",
       iconName: "Stethoscope",
     },
+    specialists: {
+      cycleMs: 3000,
+      cardLabel: "Tu Especialista",
+      items: [
+        {
+          image: "/dr-cazares.png",
+          imageAlt: "Dr. Miguel Ángel Cázares Álvarez — Cirujano General",
+          name: "Dr. Miguel Ángel\nCázares Álvarez",
+          title: "Cirujano General",
+          iconName: "Stethoscope",
+        },
+        {
+          image: "/dr-cazares.png",
+          imageAlt: "Dra. Claudia Cardosa",
+          name: "Dra. Claudia\nCardosa",
+          title: "Cirujano General",
+          iconName: "Stethoscope",
+        },
+      ],
+    },
     specialtiesModal: {
       intro: "Áreas de Especialización",
       title: "Enfocado en",
