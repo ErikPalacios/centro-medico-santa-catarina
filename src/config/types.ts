@@ -105,6 +105,12 @@ export interface SiteConfig {
     trustIndicators?: TrustIndicator[];
     availability?: HeroAvailability;
     rating?: { score: string; label: string };
+    doctorCard?: {
+      label: string;
+      name: string;
+      title: string;
+      iconName: LucideIconName;
+    };
   };
 
   // Stats bar (optional)

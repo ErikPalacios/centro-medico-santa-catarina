@@ -56,6 +56,12 @@ export const santaCatarina: SiteConfig = {
       score: "4.9",
       label: "Calificación",
     },
+    doctorCard: {
+      label: "Tu Especialista",
+      name: "Dr. Miguel Ángel\nCázares Álvarez",
+      title: "Cirujano General",
+      iconName: "Stethoscope",
+    },
   },
 
   stats: {

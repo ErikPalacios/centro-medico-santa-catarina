@@ -190,6 +190,36 @@ export const Hero = () => {
                 </motion.div>
               )}
 
+              {/* Floating doctor card */}
+              {hero.doctorCard && (() => {
+                const DocIcon = iconMap[hero.doctorCard.iconName];
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.0, duration: 0.6 }}
+                    className="absolute -bottom-6 right-0 md:-right-8 bg-white rounded-2xl p-5 w-[230px]"
+                    style={{
+                      boxShadow: "0 20px 60px -10px rgba(25,140,148,0.18)",
+                      border: "1px solid rgba(25,140,148,0.07)",
+                    }}
+                  >
+                    <p className="text-[9px] font-bold uppercase tracking-widest text-secondary mb-1.5">
+                      {hero.doctorCard.label}
+                    </p>
+                    <p className="text-primary font-extrabold text-base leading-tight mb-3 whitespace-pre-line">
+                      {hero.doctorCard.name}
+                    </p>
+                    <div className="flex items-center gap-2">
+                      <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                        <DocIcon className="w-3 h-3 text-primary" />
+                      </div>
+                      <p className="text-xs text-secondary font-medium">{hero.doctorCard.title}</p>
+                    </div>
+                  </motion.div>
+                );
+              })()}
+
               {/* Rating badge */}
               {hero.rating && (
                 <motion.div
