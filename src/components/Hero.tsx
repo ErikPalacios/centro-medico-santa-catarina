@@ -38,7 +38,6 @@ export const Hero = () => {
   const currentSpecialist = specialists?.[specialistIdx];
   const heroImage = currentSpecialist?.image ?? hero.image;
   const heroImageAlt = currentSpecialist?.imageAlt ?? hero.imageAlt;
-  const heroDescription = currentSpecialist?.description ?? hero.subheadline;
   const activeDoctorCard = currentSpecialist
     ? {
         label: hero.specialists!.cardLabel,
@@ -133,20 +132,33 @@ export const Hero = () => {
                 )}
               </h1>
 
-              <div className="relative mb-10 max-w-[440px] min-h-[8.5rem]">
-                <AnimatePresence>
-                  <motion.p
-                    key={`hero-desc-${specialistIdx}`}
-                    initial={{ opacity: 0, y: 8 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -6 }}
-                    transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                    className="absolute inset-0 text-xl text-secondary leading-relaxed font-light"
-                  >
-                    {heroDescription}
-                  </motion.p>
-                </AnimatePresence>
-              </div>
+              {specialists && specialists.length > 0 ? (
+                <div
+                  className="mb-10 max-w-[440px] grid"
+                  style={{ gridTemplateAreas: '"stack"' }}
+                >
+                  {specialists.map((s, i) => (
+                    <motion.p
+                      key={i}
+                      style={{ gridArea: "stack" }}
+                      initial={false}
+                      animate={{
+                        opacity: i === specialistIdx ? 1 : 0,
+                        y: i === specialistIdx ? 0 : 8,
+                      }}
+                      transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
+                      aria-hidden={i !== specialistIdx}
+                      className="text-xl text-secondary leading-relaxed font-light whitespace-pre-line"
+                    >
+                      {s.description}
+                    </motion.p>
+                  ))}
+                </div>
+              ) : (
+                <p className="text-xl text-secondary mb-10 max-w-[440px] leading-relaxed font-light">
+                  {hero.subheadline}
+                </p>
+              )}
 
               <div className="flex flex-col sm:flex-row gap-4 mb-12 items-center">
                 <GradientButton dark height="56px" onClick={() => { window.location.href = "#contact"; }}>

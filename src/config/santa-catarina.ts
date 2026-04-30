@@ -73,7 +73,7 @@ export const santaCatarina: SiteConfig = {
           title: "Cirujano General",
           iconName: "Stethoscope",
           description:
-            "El Dr. Miguel Ángel Cázares Álvarez realiza cirugía gastrointestinal y de mínima invasión, incluyendo hernioplastias, colecistectomías y laparoscopia avanzada. Atiende a pacientes adultos y niños con protocolos de seguridad y un enfoque humano centrado en la recuperación rápida.",
+            "Médico egresado de la UANL, con especialidad en Cirugía General por el ISSSTE Monterrey.\nAfiliado a asociaciones como AMCG, AMCE y CECGENL, y certificado por la Asociación Mexicana de Cirugía General.\n\nCuenta con más de 15 años de experiencia en el sector público y privado, ofreciendo atención cálida, responsable y de alta calidad.",
           specialties: [
             { iconName: "Activity",   label: "Cirugía gastrointestinal" },
             { iconName: "Shield",     label: "Cirugía de hernia" },
