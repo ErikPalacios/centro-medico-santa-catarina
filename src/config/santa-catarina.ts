@@ -62,6 +62,18 @@ export const santaCatarina: SiteConfig = {
       title: "Cirujano General",
       iconName: "Stethoscope",
     },
+    specialtiesModal: {
+      intro: "Áreas de Especialización",
+      title: "Enfocado en",
+      subtitle: "Dr. Miguel Ángel Cázares Álvarez — Cirujano General",
+      items: [
+        { iconName: "Activity",   label: "Cirugía gastrointestinal" },
+        { iconName: "Shield",     label: "Cirugía de hernia" },
+        { iconName: "HeartPulse", label: "Cirugía de vesícula y vía biliar" },
+        { iconName: "Microscope", label: "Laparoscopia avanzada" },
+      ],
+      footer: "Atendemos pacientes adultos y niños",
+    },
   },
 
   stats: {

@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { motion } from "motion/react";
 import { ArrowRight } from "lucide-react";
 import GradientButton from "@/components/ui/button-1";
 import { FloatingPaths } from "@/components/ui/background-paths";
+import { SpecialtiesModal } from "./SpecialtiesModal";
 import { config } from "@/src/config";
 import { iconMap } from "@/src/config/icons";
 
@@ -17,6 +19,7 @@ function renderLines(text: string) {
 
 export const Hero = () => {
   const { hero, features } = config;
+  const [showSpecialties, setShowSpecialties] = useState(false);
 
   return (
     <section className="relative overflow-hidden min-h-[95vh] flex items-start">
@@ -115,7 +118,11 @@ export const Hero = () => {
                   </span>
                 </GradientButton>
                 {hero.secondaryCta && (
-                  <button className="inline-flex items-center justify-center text-primary border border-primary/25 px-8 py-4 rounded-xl font-bold text-[1.05rem] hover:bg-primary/5 hover:border-primary/40 transition-all duration-300">
+                  <button
+                    type="button"
+                    onClick={() => setShowSpecialties(true)}
+                    className="inline-flex items-center justify-center text-primary border border-primary/25 px-8 py-4 rounded-xl font-bold text-[1.05rem] hover:bg-primary/5 hover:border-primary/40 transition-all duration-300"
+                  >
                     {hero.secondaryCta}
                   </button>
                 )}
@@ -247,6 +254,8 @@ export const Hero = () => {
       </div>
       {/* Arco orgánico inferior — transición suave al fondo blanco */}
       <div className="hero-arc-bottom" />
+
+      <SpecialtiesModal open={showSpecialties} onClose={() => setShowSpecialties(false)} />
     </section>
   );
 };

@@ -111,6 +111,13 @@ export interface SiteConfig {
       title: string;
       iconName: LucideIconName;
     };
+    specialtiesModal?: {
+      intro?: string;
+      title: string;
+      subtitle?: string;
+      items: { iconName: LucideIconName; label: string }[];
+      footer?: string;
+    };
   };
 
   // Stats bar (optional)
