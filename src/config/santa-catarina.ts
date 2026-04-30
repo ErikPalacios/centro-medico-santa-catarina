@@ -38,9 +38,8 @@ export const santaCatarina: SiteConfig = {
       "Cuidamos tu salud digestiva con tecnología de vanguardia y médicos de alta especialidad. Profesionalismo, calidez y resultados que transforman vidas.",
     primaryCta: "Agendar Cita",
     secondaryCta: "Ver Especialidades",
-    image:
-      "https://lh3.googleusercontent.com/aida-public/AB6AXuCSf0u2asS1hSYSzJ1Ur_LYXPk8M3MI1ovIAwIUG46j-shlpzPsA2Ca4-KD8sCunPFVwb9lmdl5ytGcRRRYIFURDalV7KnHDLRRZFgu2sSm5T6D5yrwCyibOKIdo8UfPMvkAr4twnJpNxLCwqH1asYRjHFcG2vwc6nD0ey7uOvuYfa8qsp3u300PFolAYqXUGdnpP7ZvpWwonCLTQnCsyJtFj45TIA3c2zGidZPKMUvzTJxAhzDnMoFJRZ0raZSAooJNCvrjS_OxPI",
-    imageAlt: "Médico especialista del Centro Médico Santa Catarina",
+    image: "/dr-cazares.png",
+    imageAlt: "Dr. Miguel Ángel Cázares Álvarez — Cirujano General del Centro Médico Santa Catarina",
     video: "/hero-bg.mp4",
     trustIndicators: [
       { iconName: "Shield", label: "Médicos Certificados" },
