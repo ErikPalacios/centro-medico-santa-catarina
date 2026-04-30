@@ -42,7 +42,7 @@ export function Header() {
             </a>
           ))}
           <a className={buttonVariants({ variant: 'outline' })} href={`tel:${brand.phone}`}>
-            Call Now
+            Inicia llamada
           </a>
           <button
             onClick={() => { window.location.href = '#contact'; }}
@@ -91,7 +91,7 @@ export function Header() {
               className={buttonVariants({ variant: 'outline', className: 'w-full' })}
               href={`tel:${brand.phone}`}
             >
-              Call Now
+              Inicia llamada
             </a>
             <GradientButton
               dark

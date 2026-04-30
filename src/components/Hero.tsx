@@ -91,7 +91,7 @@ export const Hero = () => {
           >
             {/* Glass card */}
             <div
-              className="backdrop-blur-md rounded-3xl p-8 md:p-10"
+              className="backdrop-blur-md rounded-3xl p-6 md:p-10"
               style={{
                 background: "rgba(255,255,255,0.82)",
                 border: "1px solid rgba(255,255,255,0.9)",
@@ -116,7 +116,7 @@ export const Hero = () => {
               )}
 
               {/* Headline */}
-              <h1 className="text-[3.25rem] md:text-[4.25rem] font-extrabold tracking-tight text-primary leading-[1.06] mb-8">
+              <h1 className="text-[2rem] sm:text-[2.75rem] md:text-[4.25rem] font-extrabold tracking-tight text-primary leading-[1.06] mb-8">
                 {renderLines(hero.headlinePart1)}
                 {hero.headlineAccent && (
                   <>
@@ -134,8 +134,11 @@ export const Hero = () => {
 
               {specialists && specialists.length > 0 ? (
                 <div
-                  className="mb-10 max-w-[440px] grid"
-                  style={{ gridTemplateAreas: '"stack"' }}
+                  className="mb-10 w-full max-w-[440px] grid"
+                  style={{
+                    gridTemplateAreas: '"stack"',
+                    gridTemplateColumns: "minmax(0, 1fr)",
+                  }}
                 >
                   {specialists.map((s, i) => (
                     <motion.p
@@ -148,14 +151,14 @@ export const Hero = () => {
                       }}
                       transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
                       aria-hidden={i !== specialistIdx}
-                      className="text-xl text-secondary leading-relaxed font-light whitespace-pre-line"
+                      className="w-full text-base md:text-xl text-secondary leading-relaxed font-light whitespace-pre-line"
                     >
                       {s.description}
                     </motion.p>
                   ))}
                 </div>
               ) : (
-                <p className="text-xl text-secondary mb-10 max-w-[440px] leading-relaxed font-light">
+                <p className="text-base md:text-xl text-secondary mb-10 max-w-[440px] leading-relaxed font-light">
                   {hero.subheadline}
                 </p>
               )}
