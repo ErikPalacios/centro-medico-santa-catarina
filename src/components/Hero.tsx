@@ -82,12 +82,12 @@ export const Hero = () => {
       <div className="relative z-10 w-full max-w-[1440px] mx-auto px-6 md:px-12 pt-6">
         <div className="grid md:grid-cols-12 items-center gap-12 w-full pt-6 pb-16">
 
-          {/* Left column */}
+          {/* Left column (glass card) — appears second on mobile, first on desktop */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7 }}
-            className="md:col-span-6 z-10"
+            className="md:col-span-6 z-10 order-2 md:order-1"
           >
             {/* Glass card */}
             <div
@@ -206,12 +206,12 @@ export const Hero = () => {
             </div>
           </motion.div>
 
-          {/* Right column — image */}
+          {/* Right column — image (and floating cards on desktop, in-flow cards on mobile) */}
           <motion.div
             initial={{ opacity: 0, scale: 0.96, x: 40 }}
             animate={{ opacity: 1, scale: 1, x: 0 }}
             transition={{ duration: 1, delay: 0.15 }}
-            className="md:col-span-6 relative"
+            className="md:col-span-6 relative order-1 md:order-2"
           >
             <div className="relative md:translate-x-8 w-full aspect-square max-w-[640px]">
               <AnimatePresence>
@@ -229,13 +229,13 @@ export const Hero = () => {
                 />
               </AnimatePresence>
 
-              {/* Floating availability card */}
+              {/* Floating availability card — desktop only */}
               {hero.availability && (
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.9, duration: 0.6 }}
-                  className="absolute -bottom-6 left-0 md:-left-8 bg-white rounded-2xl p-5 w-[215px]"
+                  className="hidden md:block absolute -bottom-6 left-0 md:-left-8 bg-white rounded-2xl p-5 w-[215px]"
                   style={{
                     boxShadow: "0 20px 60px -10px rgba(25,140,148,0.18)",
                     border: "1px solid rgba(25,140,148,0.07)",
@@ -261,7 +261,7 @@ export const Hero = () => {
                 </motion.div>
               )}
 
-              {/* Floating doctor card — cycles between specialists when configured */}
+              {/* Floating doctor card — desktop only, cycles between specialists when configured */}
               {activeDoctorCard && (
                 <AnimatePresence>
                   {(() => {
@@ -273,7 +273,7 @@ export const Hero = () => {
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -10 }}
                         transition={{ duration: 0.5, ease: [0.4, 0, 0.2, 1] }}
-                        className="absolute -bottom-6 right-0 md:-right-8 bg-white rounded-2xl p-5 w-[230px]"
+                        className="hidden md:block absolute -bottom-6 right-0 md:-right-8 bg-white rounded-2xl p-5 w-[230px]"
                         style={{
                           boxShadow: "0 20px 60px -10px rgba(25,140,148,0.18)",
                           border: "1px solid rgba(25,140,148,0.07)",
@@ -317,6 +317,75 @@ export const Hero = () => {
                     {hero.rating.label}
                   </p>
                 </motion.div>
+              )}
+            </div>
+
+            {/* Mobile-only — availability + doctor cards stacked below the image */}
+            <div className="md:hidden mt-8 grid gap-3">
+              {hero.availability && (
+                <motion.div
+                  initial={{ opacity: 0, y: 16 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.6, duration: 0.5 }}
+                  className="bg-white rounded-2xl p-5"
+                  style={{
+                    boxShadow: "0 12px 32px -10px rgba(25,140,148,0.15)",
+                    border: "1px solid rgba(25,140,148,0.07)",
+                  }}
+                >
+                  <p className="text-[9px] font-bold uppercase tracking-widest text-secondary mb-1.5">
+                    {hero.availability.label}
+                  </p>
+                  <p className="text-primary font-extrabold text-lg mb-3">{hero.availability.time}</p>
+                  <div className="flex items-center gap-2">
+                    <div className="flex -space-x-1.5">
+                      {hero.availability.patientInitials.map((init) => (
+                        <div
+                          key={init}
+                          className="w-6 h-6 rounded-full bg-primary/10 border-2 border-white flex items-center justify-center text-[8px] font-bold text-primary"
+                        >
+                          {init}
+                        </div>
+                      ))}
+                    </div>
+                    <p className="text-xs text-secondary font-medium">{hero.availability.recentCount}</p>
+                  </div>
+                </motion.div>
+              )}
+
+              {activeDoctorCard && (
+                <AnimatePresence mode="wait">
+                  {(() => {
+                    const DocIcon = iconMap[activeDoctorCard.iconName];
+                    return (
+                      <motion.div
+                        key={`doc-card-mobile-${specialistIdx}`}
+                        initial={{ opacity: 0, y: 12 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -8 }}
+                        transition={{ duration: 0.4, ease: [0.4, 0, 0.2, 1] }}
+                        className="bg-white rounded-2xl p-5"
+                        style={{
+                          boxShadow: "0 12px 32px -10px rgba(25,140,148,0.15)",
+                          border: "1px solid rgba(25,140,148,0.07)",
+                        }}
+                      >
+                        <p className="text-[9px] font-bold uppercase tracking-widest text-secondary mb-1.5">
+                          {activeDoctorCard.label}
+                        </p>
+                        <p className="text-primary font-extrabold text-base leading-tight mb-3 whitespace-pre-line">
+                          {activeDoctorCard.name}
+                        </p>
+                        <div className="flex items-center gap-2">
+                          <div className="w-6 h-6 rounded-full bg-primary/10 flex items-center justify-center flex-shrink-0">
+                            <DocIcon className="w-3 h-3 text-primary" />
+                          </div>
+                          <p className="text-xs text-secondary font-medium">{activeDoctorCard.title}</p>
+                        </div>
+                      </motion.div>
+                    );
+                  })()}
+                </AnimatePresence>
               )}
             </div>
           </motion.div>
