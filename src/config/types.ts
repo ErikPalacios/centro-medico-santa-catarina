@@ -181,5 +181,12 @@ export interface SiteConfig {
     contactInfo: ContactInfoItem[];
     consultationTypes: string[];
     timeSlots: string[];
+    location?: {
+      image: string;
+      imageAlt: string;
+      mapEmbedUrl: string;   // src for the iframe
+      mapShareUrl: string;   // click-through to open Maps in a new tab
+      mapCtaLabel?: string;
+    };
   };
 }

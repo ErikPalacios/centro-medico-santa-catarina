@@ -274,5 +274,13 @@ export const santaCatarina: SiteConfig = {
       "8:00 AM", "9:00 AM", "10:00 AM", "11:00 AM",
       "1:00 PM", "2:00 PM", "3:00 PM", "4:00 PM", "5:00 PM",
     ],
+    location: {
+      image: "/clinica-recepcion.png",
+      imageAlt: "Recepción del Centro Médico y Especialidades Santa Catarina",
+      mapEmbedUrl:
+        "https://maps.google.com/maps?q=Centro%20M%C3%A9dico%20y%20Especialidades%20Santa%20Catarina%2C%20Santa%20Catarina%2C%20Nuevo%20Le%C3%B3n&output=embed",
+      mapShareUrl: "https://share.google/BUBMweflirCkoq2FM",
+      mapCtaLabel: "Abrir en Google Maps",
+    },
   },
 };

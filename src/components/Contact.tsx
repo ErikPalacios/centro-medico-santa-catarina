@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "motion/react";
-import { CalendarDays, CheckCircle2 } from "lucide-react";
+import { CalendarDays, CheckCircle2, ExternalLink } from "lucide-react";
 import GradientButton from "@/components/ui/button-1";
 import { config } from "@/src/config";
 import { iconMap } from "@/src/config/icons";
@@ -22,7 +22,7 @@ function renderLines(text: string) {
 }
 
 export const Contact = () => {
-  const { sectionLabel, headline, subheadline, contactInfo, consultationTypes, timeSlots } =
+  const { sectionLabel, headline, subheadline, contactInfo, consultationTypes, timeSlots, location } =
     config.contact;
 
   const [selectedTime, setSelectedTime] = React.useState<string | null>(null);
@@ -36,6 +36,58 @@ export const Contact = () => {
 
   return (
     <section id="contact" className="py-20 px-6 md:px-12 max-w-[1440px] mx-auto">
+
+      {/* Top row — clinic photo + interactive map */}
+      {location && (
+        <div className="grid md:grid-cols-2 gap-6 md:gap-10 mb-20">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-60px" }}
+            transition={{ duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            className="relative aspect-[4/3] overflow-hidden rounded-3xl"
+            style={{ boxShadow: "0 20px 60px -12px rgba(25,140,148,0.18)" }}
+          >
+            <img
+              src={location.image}
+              alt={location.imageAlt}
+              className="absolute inset-0 w-full h-full object-cover"
+            />
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: "-60px" }}
+            transition={{ delay: 0.1, duration: 0.6, ease: [0.4, 0, 0.2, 1] }}
+            className="relative aspect-[4/3] rounded-3xl overflow-hidden flex flex-col"
+            style={{
+              boxShadow: "0 20px 60px -12px rgba(25,140,148,0.18)",
+              border: "1px solid rgba(25,140,148,0.1)",
+            }}
+          >
+            <iframe
+              src={location.mapEmbedUrl}
+              title="Ubicación en Google Maps"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+              className="absolute inset-0 w-full h-full border-0"
+            />
+            <a
+              href={location.mapShareUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="absolute bottom-4 right-4 inline-flex items-center gap-2 bg-white/95 backdrop-blur-sm hover:bg-white text-primary text-sm font-bold px-4 py-2.5 rounded-xl transition-all duration-200 hover:shadow-lg"
+              style={{ boxShadow: "0 4px 16px rgba(0,0,0,0.12)" }}
+            >
+              {location.mapCtaLabel ?? "Abrir en Google Maps"}
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </motion.div>
+        </div>
+      )}
+
       <div className="grid md:grid-cols-2 gap-20">
 
         {/* Left — info */}
