@@ -123,16 +123,16 @@ export const Contact = () => {
                 <CheckCircle2 className="w-10 h-10 text-primary" />
               </div>
               <div>
-                <h3 className="text-2xl font-extrabold text-primary mb-2">Appointment Requested!</h3>
+                <h3 className="text-2xl font-extrabold text-primary mb-2">¡Cita Solicitada!</h3>
                 <p className="text-on-surface-variant font-light leading-relaxed max-w-xs mx-auto">
-                  We'll confirm your slot within a few hours. Check your email for details.
+                  Confirmaremos tu cita en pocas horas. Revisa tu correo para más detalles.
                 </p>
               </div>
               <button
                 onClick={() => setSubmitted(false)}
                 className="text-sm font-bold text-primary underline underline-offset-4 hover:opacity-70 transition-opacity"
               >
-                Book another appointment
+                Agendar otra cita
               </button>
             </motion.div>
           ) : (
@@ -144,36 +144,36 @@ export const Contact = () => {
                 >
                   <CalendarDays className="w-4.5 h-4.5 text-primary" />
                 </div>
-                <h3 className="text-xl font-bold text-primary tracking-tight">Schedule an Appointment</h3>
+                <h3 className="text-xl font-bold text-primary tracking-tight">Agendar una Cita</h3>
               </div>
 
               <form ref={formRef} className="space-y-6" onSubmit={handleSubmit}>
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className={labelClass}>First Name</label>
-                    <input className={inputClass} placeholder="John" type="text" required />
+                    <label className={labelClass}>Nombre</label>
+                    <input className={inputClass} placeholder="Juan" type="text" required />
                   </div>
                   <div>
-                    <label className={labelClass}>Last Name</label>
-                    <input className={inputClass} placeholder="Doe" type="text" required />
+                    <label className={labelClass}>Apellido</label>
+                    <input className={inputClass} placeholder="Pérez" type="text" required />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-2 gap-4">
                   <div>
-                    <label className={labelClass}>Phone</label>
+                    <label className={labelClass}>Teléfono</label>
                     <input className={inputClass} placeholder={config.brand.phone} type="tel" required />
                   </div>
                   <div>
-                    <label className={labelClass}>Email</label>
-                    <input className={inputClass} placeholder="john@example.com" type="email" required />
+                    <label className={labelClass}>Correo</label>
+                    <input className={inputClass} placeholder="juan@ejemplo.com" type="email" required />
                   </div>
                 </div>
 
                 <div>
-                  <label className={labelClass}>Type of Consultation</label>
+                  <label className={labelClass}>Tipo de Consulta</label>
                   <select className={inputClass + " appearance-none cursor-pointer"} required>
-                    <option value="">Select a reason for visit</option>
+                    <option value="">Selecciona el motivo de la visita</option>
                     {consultationTypes.map((t) => (
                       <option key={t}>{t}</option>
                     ))}
@@ -181,7 +181,7 @@ export const Contact = () => {
                 </div>
 
                 <div>
-                  <label className={labelClass}>Preferred Date</label>
+                  <label className={labelClass}>Fecha Preferida</label>
                   <input
                     className={inputClass + " cursor-pointer"}
                     type="date"
@@ -191,7 +191,7 @@ export const Contact = () => {
                 </div>
 
                 <div>
-                  <label className={labelClass}>Preferred Time</label>
+                  <label className={labelClass}>Hora Preferida</label>
                   <div className="grid grid-cols-4 gap-2">
                     {timeSlots.map((slot) => (
                       <button
@@ -213,12 +213,12 @@ export const Contact = () => {
 
                 <div>
                   <label className={labelClass}>
-                    Notes{" "}
-                    <span className="normal-case font-normal tracking-normal">(optional)</span>
+                    Notas{" "}
+                    <span className="normal-case font-normal tracking-normal">(opcional)</span>
                   </label>
                   <textarea
                     className={inputClass + " resize-none"}
-                    placeholder="Briefly describe your main concern or any relevant medical history..."
+                    placeholder="Describe brevemente tu motivo principal o algún antecedente médico relevante..."
                     rows={3}
                   />
                 </div>
@@ -230,7 +230,7 @@ export const Contact = () => {
                     className="w-full"
                     onClick={() => formRef.current?.requestSubmit()}
                   >
-                    <span className="text-[1rem]">Confirm Appointment</span>
+                    <span className="text-[1rem]">Confirmar Cita</span>
                   </GradientButton>
                 </div>
               </form>
